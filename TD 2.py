@@ -5,7 +5,7 @@ Created on Wed Mar 20 09:50:11 2024
 @author: arthu
 """
 #Exercie 1
-from math import gcd, pi
+from math import gcd
 class Fraction:
     
 
@@ -71,25 +71,48 @@ def leibniz(n):
     return f1
 
 print(leibniz(10000))
-print(float(leibniz(10000)))
+
 
 #Exercice 5
 
 class Polynomial :
         def __init__(self,liste):
-            assert type(liste)==list()
+            assert type(liste)==list
             self.coef=liste
             
         def __str__(self):
             nbrcoef=len(self.coef)
+            pol=str()
             for i in range(nbrcoef):
-                pol=str(self.coef[i]+'x'**(n-i+1))
-                
-
+                if i == nbrcoef-1:
+                    pol=pol+str(self.coef[i])+'*x**'+str(nbrcoef-i-1)
+                else :
+                    pol=pol+str(self.coef[i])+'*x**'+str(nbrcoef-i-1)+'+'
+            print(pol)
+            
+#Exercice 6           
+        def add(self,poly2):
+            n1=len(self.coef)
+            n2=len(poly2.coef) # Pas réussi pour add
+            
+        def derive(self):
+            n=len(self.coef)
+            for i in range(n):
+                self.coef[i]=self.coef[i]*(n-i-1) #on mutliplie le coeff par la puissance 
+            self.coef.remove(self.coef[n-1]) # En retirant le dernier coeff de la liste on réduit le degres du polynome de 1
         
-    
-
-
-
+        def integrate(self,c):
+            n=len(self.coef)
+            for i in range(n):
+                self.coef[i]=self.coef[i]/(n-i) #on divise le coeff par la puissance 
+            self.coef.append(c) #on rajoute le dernier terme (constante) ce qui décale la puissance
+            
+if __name__ == '__main__':
+    p1=Polynomial([4,3,2,1])
+    p1.__str__()
+    p1.derive()
+    print(p1)
+    p1.integrate()
+    print(p1)
 
 
