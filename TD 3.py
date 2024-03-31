@@ -14,7 +14,8 @@ class Tree:
         self.__children = tuple(children)
         
     def alabel(self):
-        return self.__label #On change le nom de la fonction pour éviter le problème entre le nom dela fonction et la variable label et children définie au dessus
+        return self.__label #On change le nom de la fonction pour éviter le 
+#problème entre le nom de la fonction et la variable label et children définie au dessus
     
     def achildren(self):
         return self.__children
@@ -32,13 +33,6 @@ class Tree:
             return False
         
 #Exercice 3
-    """
-    def depth(self):
-        dept=0
-        if self.__children!=():
-            dept=dept+1
-        
-     """
 
     def depth(self):
         if self.is_leaf():
@@ -46,35 +40,46 @@ class Tree:
         return 1+max([p.depth() for p in self.achildren()])
      
 #Exercice 4
-
+               
     def __str__(self):
         if self.is_leaf():
             return self.__label 
-        a=str(self.__label)
-        for i in self.achildren():
-            a=a+'('+str(i)+')'
+        a=str(self.__label)+'('
+        for i in range(len(self.achildren())):
+            a=a+str(self.achildren()[i].__str__())+','
+        a=a[:-1]+')'
         return a
-              
-    def __str__(self):
-        n=len()
-        if self.is_leaf():
-            return self.__label 
-        a=str(self.__label)
-        for i in self.achildren():
+    
+    def __eq__(self,__value : object):
+        if self.__label!=__value.__label:
+            return False
+        elif self.achildren()==__value.achildren():
+            for i in range(len(self.achildren())):
+                if not self.achildren()[i].__eq__(__value.children()[i]):
+                    return False
+                return True 
+        else:
+            return False
             
-        return a
+        
+        
+        
+        
+if __name__ == '__main__':
+    t1=Tree('f',Tree('a'),Tree('b'))  
+    t4=Tree('f',Tree('a'),Tree('b'))
+    print(t1.achildren()) 
+    t2=t1.child(1)
+    print(t2.is_leaf())
+        
+    t1.depth()
+    print(t1.depth())
     
-t1=Tree('f',Tree('a'),Tree('b'))  
-print(t1.achildren()) 
-t2=t1.child(1)
-print(t2.is_leaf())
-    
-t1.depth()
-print(t1.depth())
-
-t2.__str__()
-print(t2.__str__())
-t1.__str__()
-print(t1.__str__())
-#if __name__ == '__main__':
-    #t1=Tree("f",[Tree('a'),Tree('b')])
+    t2.__str__()
+    print(t2.__str__())
+    t3=Tree('f',Tree('a'),Tree('b',Tree('c'))) 
+    t3.__str__()
+    print(t3.__str__())
+    t1.__eq__(t3)
+    print(t1.__eq__(t3))
+    print(t1.__eq__(t4))
