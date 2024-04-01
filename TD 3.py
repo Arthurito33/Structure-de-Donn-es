@@ -57,7 +57,7 @@ class Tree:
             for i in range(len(self.achildren())):
                 if not self.achildren()[i].__eq__(__value.children()[i]):
                     return False
-                return True 
+            return True 
         else:
             return False
             
