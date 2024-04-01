@@ -53,16 +53,41 @@ class Tree:
     def __eq__(self,__value : object):
         if self.__label!=__value.__label:
             return False
-        elif self.achildren()==__value.achildren():
+        elif self.nb_children()==__value.nb_children():
             for i in range(len(self.achildren())):
-                if not self.achildren()[i].__eq__(__value.children()[i]):
-                    return False
+                if not self.achildren()[i].__eq__(__value.achildren()[i]):
+                    return False   
             return True 
         else:
             return False
             
         
-        
+#Exercice 5   
+# Ma fonction dérivée n'est pas finie j'ai un problème avec l'opérateur * que je ne comprends pas
+    """def deriv(self,var: str):
+       Tree_list=[]
+       for i in range(self.nb_children()):
+           if self.child(i).is_leaf():
+              Tree_list.append(Tree('0')) 
+           elif self.child(i).alabel()==var:
+               if self.child(i).is_leaf():
+                   Tree_list.append(Tree('1'))
+               else:
+                    a=self.child(i).child(0).nb_children()
+                    A=[Tree(var)]*(a)
+                    Tree_list.append(Tree(str(a+1),Tree('*',*A)))
+           else:
+                if self.child(i).child(0).nb_children()==1:
+                    Tree_list.append(Tree(self.child(i).get_label()))
+                else:
+                    a=self.child(i).child(0).nb_children()
+                    A=[Tree(var)]*(a-1)
+                    Tree_list.append(Tree(str(int(self.child(i).alabel())*(a)),Tree('*',*A)))
+
+       return Tree('+',*Tree_list) """
+                   
+                   
+               
         
         
 if __name__ == '__main__':
@@ -83,3 +108,6 @@ if __name__ == '__main__':
     t1.__eq__(t3)
     print(t1.__eq__(t3))
     print(t1.__eq__(t4))
+    t5=Tree('+',Tree('*',Tree('3'),Tree('X'),Tree('X')),Tree('*',Tree('5'),Tree('X')),Tree('7'))
+    print(t5.__str__())
+    #print(t5.deriv('X'))
